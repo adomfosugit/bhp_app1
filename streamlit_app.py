@@ -99,10 +99,6 @@ def start_prediction():
 if st.button("Predict"):
     start_prediction()
 
-# Display the prediction result
-if 'prediction_result' in st.session_state:
-    st.subheader("Prediction Result:")
-    st.write(st.session_state['prediction_result'])
 
 # Display the prediction result
 if 'prediction_result' in st.session_state:
