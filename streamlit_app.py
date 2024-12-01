@@ -49,7 +49,7 @@ if uploaded_file is not None:
 
 # Load the saved model and scaler
 def load_model():
-    with open('saved_steps98.pkl', 'rb') as file:
+    with open('saved_steps1.pkl', 'rb') as file:
         data = pickle.load(file)
     return data
 
