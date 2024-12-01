@@ -3,3 +3,4 @@ numpy
 Keras
 tensorflow
 scikit-learn
+pandas
