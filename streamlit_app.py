@@ -3,9 +3,8 @@ import numpy as np
 import pandas as pd
 import pickle
 from copy import deepcopy as dc
-import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
-
+import keras
 
 st.title('Estimate BHP')
 st.subheader("Upload your CSV file here")
@@ -54,7 +53,7 @@ if uploaded_file is not None:
 #        data = pickle.load(file)
 #    return data
 def load_model():
-    model = tf.keras.models.load_model('model_98-P-WCT MODIFIED.keras')
+    model = keras.models.load_model('model_98-P-WCT MODIFIED.keras')
     return model
 model = load_model()
 #model = data['model']
