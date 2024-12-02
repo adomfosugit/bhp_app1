@@ -55,7 +55,13 @@ def load_model():
 
 data = load_model()
 model = data['model']
-scaler = data['scaler']
+def load_scaler():
+    with open('scaler.pkl', 'rb') as file:
+        scale = pickle.load(file)
+    return  scale
+
+scale1 = load_scaler()
+scaler = scale1['scaler']
 def manual_unscale(scaled_data):
     # Extract the mean and standard deviation from the scaler
     means = 3255
@@ -73,13 +79,11 @@ def start_prediction():
         df = st.session_state['dataframe']
         
         # Apply scaling to the necessary columns
-        columns_to_scale = ['Qliquid', 'GOR', 'Pwh', 'WCT', 'THT',
-                            'Qliquid(t-1)', 'GOR(t-1)', 'Pwh(t-1)', 'WCT(t-1)', 'THT(t-1)',
-                            'Qliquid(t-2)', 'GOR(t-2)', 'Pwh(t-2)', 'WCT(t-2)', 'THT(t-2)']
+        columns_to_scale = ['Qliquid', 'GOR', 'Pwh', 'THT','WCT','Qliquid(t-1)','GOR(t-1)','Pwh(t-1)','THT(t-1)',	'WCT(t-1)','Qliquid(t-2)','GOR(t-2)','Pwh(t-2)','THT(t-2)',	'WCT(t-2)']
 
         # Ensure these columns exist in the DataFrame
         scaled_columns = [col for col in columns_to_scale if col in df.columns]
-        data_predicted = scaler.fit_transform(df[scaled_columns])
+        data_predicted = scaler.transform(df[scaled_columns])
 
         # Convert back to a DataFrame to preserve column labels (optional)
         scaled_df = pd.DataFrame(data_predicted, columns=scaled_columns)
