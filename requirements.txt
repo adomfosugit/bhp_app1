@@ -4,4 +4,4 @@ streamlit
 scikit-learn
 pandas
 keras
-tensorflow
+tensorflow<=2.17.1
