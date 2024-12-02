@@ -3,7 +3,8 @@ import numpy as np
 import pandas as pd
 import pickle
 from copy import deepcopy as dc
-
+import tensorflow as tf
+from sklearn.preprocessing import MinMaxScaler
 
 
 st.title('Estimate BHP')
@@ -48,14 +49,16 @@ if uploaded_file is not None:
         st.error(f"An error occurred while processing the file: {e}")
 
 # Load the saved model and scaler
+#def load_model():
+#    with open('saved_steps98.pkl', 'rb') as file:
+#        data = pickle.load(file)
+#    return data
 def load_model():
-    with open('saved_steps98.pkl', 'rb') as file:
-        data = pickle.load(file)
-    return data
-
-data = load_model()
-model = data['model']
-scaler = data['scaler']
+    model = tf.keras.models.load_model('model_98-P-WCT MODIFIED.keras')
+    return model
+model = load_model()
+#model = data['model']
+scaler = MinMaxScaler(feature_range=(0,1))
 def manual_unscale(scaled_data):
     # Extract the mean and standard deviation from the scaler
     means = 3255
