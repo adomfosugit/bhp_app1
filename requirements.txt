@@ -1,6 +1,4 @@
-streamlit
 numpy
-Keras
-tensorflow
-scikit-learn
 pandas
+streamlit
+scikit-learn
