@@ -4,4 +4,4 @@ streamlit
 scikit-learn
 pandas
 keras
-tensorflow==2.12.0
+tensorflow
